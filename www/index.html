@@ -23,6 +23,7 @@
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
     <body>
+    <script type="text/javascript" src="cordova.js"></script>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -61,29 +62,12 @@
     </div>
 
     <div class="container">
-        <script type="text/javascript" src="cordova.js"></script>
-        <script>function findContacts(){
-            var options = new ContactFindOptions();
-            options.filter = "mae";
-            options.multiple = true;
-            options.desiredFields = [navigator.contacts.fieldType.id];
-            var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
-            navigator.contacts.find(onSuccess, onError, fields, options);
-        };
-        function onSuccess(contacts) {
-            alert('Found ' + contacts.length + ' contacts.');
-        };
-
-        function onError(contactError) {
-            alert('onError!');
-        };
-        </script>
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4">
           <h2>Heading</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <p><a class="btn btn-default" href="#" role="button" onclick="navigator.notification.alert('teste dialog')">View details &raquo;</a></p>
         </div>
         <div class="col-md-4">
           <h2>Heading</h2>
