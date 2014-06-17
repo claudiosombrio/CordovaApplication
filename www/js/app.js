@@ -8,8 +8,6 @@
 
     var detailsURL = /^#employees\/(\d{1,})/;
 
-    var slider = new PageSlider($('body'));
-
     var adapter = new MemoryAdapter();
     adapter.initialize().done(function () {
         route();
@@ -38,13 +36,13 @@
     function route() {
         var hash = window.location.hash;
         if (!hash) {
-            slider.slidePage(new HomeView(adapter, homeTpl, employeeLiTpl).render().el);
+            $('body').html(new HomeView(adapter, homeTpl, employeeLiTpl).render().el);
             return;
         }
         var match = hash.match(detailsURL);
         if (match) {
             adapter.findById(Number(match[1])).done(function(employee) {
-                slider.slidePage(new EmployeeView(adapter, employeeTpl, employee).render().el);
+                $('body').html(new EmployeeView(adapter, employeeTpl, employee).render().el);
             });
         }
     }
