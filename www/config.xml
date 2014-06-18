@@ -9,5 +9,5 @@
     </author>
     <content src="index.html"/>
     <access origin="*"/>
-    <gap:plugin name="org.apache.cordova.contacts" version="0.2.9" />
+    <!--<gap:plugin name="org.apache.cordova.contacts" version="0.2.9" />-->
 </widget>
