@@ -1,13 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.coolappz.CordovaApplication" version="0.0.1">
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.coolappz.CordovaApplication"
+        versionCode = "10" 
+        version     = "1.0.0" >
+
     <name>CordovaApplication</name>
+
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Descrição sobre a aplicação
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+
+    <author href="http://www.celk.com.br" email="claudio@celk.com.br">
+        Claudio
     </author>
-    <content src="index.html"/>
     <access origin="*"/>
+
     <gap:plugin name="org.apache.cordova.contacts" version="0.2.9" />
+
+    <!--<gap:platform name="ios" />-->
+    <gap:platform name="android" />
+    <gap:platform name="winphone" />
 </widget>
