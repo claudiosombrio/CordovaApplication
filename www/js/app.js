@@ -8,7 +8,8 @@
 
     var detailsURL = /^#employees\/(\d{1,})/;
 
-    var adapter = new MemoryAdapter();
+//    var adapter = new MemoryAdapter();
+    var adapter = new LocalStorageAdapter();
     adapter.initialize().done(function () {
         route();
     });
