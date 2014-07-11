@@ -1,8 +1,7 @@
-// We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
-//(function() {
 function onLoad() {
-    alert("On load");
-    document.addEventListener("deviceready", onDeviceReady, false);
+    $(document).ready(onDeviceReady);
+    
+//    document.addEventListener("ready", onDeviceReady, false);
 }
 
 function onDeviceReady() {
@@ -34,6 +33,3 @@ function findByName() {
         }
     });
 }
-
-//}());
-
