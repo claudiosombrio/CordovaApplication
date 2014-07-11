@@ -1,9 +1,9 @@
 // We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
-(function () {
+(function() {
 
     /* ---------------------------------- Local Variables ---------------------------------- */
     var service = new EmployeeService();
-    service.initialize().done(function () {
+    service.initialize().done(function() {
         console.log("Service initialized");
     });
 
@@ -13,15 +13,16 @@
         alert("Employee Directory v3.4");
     });
 
-    document.addEventListener('deviceready', function () {
+    document.addEventListener('deviceready', function() {
+        alert('ready');
         if (navigator.notification) { // Override default HTML alert with native dialog
-            window.alert = function (message) {
+            window.alert = function(message) {
                 navigator.notification.alert(
-                    message,    // message
-                    null,       // callback
-                    "Workshop", // title
-                    'OK'        // buttonName
-                );
+                        message, // message
+                        null, // callback
+                        "Workshop", // title
+                        'OK'        // buttonName
+                        );
             };
         }
     }, false);
@@ -29,7 +30,7 @@
 
     /* ---------------------------------- Local Functions ---------------------------------- */
     function findByName() {
-        service.findByName($('.search-key').val()).done(function (employees) {
+        service.findByName($('.search-key').val()).done(function(employees) {
             var l = employees.length;
             var e;
             $('.employee-list').empty();
