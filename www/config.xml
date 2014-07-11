@@ -1,12 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="br.com.celk.CordovaApplication" version="2.0">
-    <name>CordovaApplication2</name>
-    <description>Cordova Application</description>
-    <author email="claudio@celk.com.br" href="http://www.celk.com.br">claudio</author>
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "br.com.celk.CordovaApplication"
+        versionCode = "10" 
+        version     = "2.0" >
+
+    <name>CordovaApplication3</name>
+
+    <description>
+        Descrição sobre a aplicação
+    </description>
+
+    <author href="http://www.celk.com.br" email="claudio@celk.com.br">
+        Claudio
+    </author>
     <access origin="*"/>
-    <preference name="fullscreen" value="true"/>
-    <preference name="webviewbounce" value="true"/>
-    
+
     <gap:plugin name="org.apache.cordova.contacts" version="0.2.9" />
     <gap:plugin name="org.apache.cordova.camera" version="0.2.9" />
 
