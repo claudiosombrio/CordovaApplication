@@ -2,47 +2,28 @@
 (function () {
 
     /* ---------------------------------- Local Variables ---------------------------------- */
-    var homeTpl = Handlebars.compile($("#home-tpl").html());
-    var employeeLiTpl = Handlebars.compile($("#employee-li-tpl").html());
-    var employeeTpl = Handlebars.compile($("#employee-tpl").html());
-
-    var detailsURL = /^#employees\/(\d{1,})/;
-
-    var adapter = new MemoryAdapter();
-    adapter.initialize().done(function () {
-        route();
+    var service = new EmployeeService();
+    service.initialize().done(function () {
+        console.log("Service initialized");
     });
 
     /* --------------------------------- Event Registration -------------------------------- */
-    $(window).on('hashchange', route);
-
-    document.addEventListener('deviceready', function () {
-
-        if (navigator.notification) { // Override default HTML alert with native dialog
-            window.alert = function (message) {
-                navigator.notification.alert(
-                    message,    // message
-                    null,       // callback
-                    "Workshop", // title
-                    'OK'        // buttonName
-                );
-            };
-        }
-    }, false);
+    $('.search-key').on('keyup', findByName);
+    $('.help-btn').on('click', function() {
+        alert("Employee Directory v3.4");
+    });
 
     /* ---------------------------------- Local Functions ---------------------------------- */
-    function route() {
-        var hash = window.location.hash;
-        if (!hash) {
-            $('body').html(new HomeView(adapter, homeTpl, employeeLiTpl).render().el);
-            return;
-        }
-        var match = hash.match(detailsURL);
-        if (match) {
-            adapter.findById(Number(match[1])).done(function(employee) {
-                $('body').html(new EmployeeView(adapter, employeeTpl, employee).render().el);
-            });
-        }
+    function findByName() {
+        service.findByName($('.search-key').val()).done(function (employees) {
+            var l = employees.length;
+            var e;
+            $('.employee-list').empty();
+            for (var i = 0; i < l; i++) {
+                e = employees[i];
+                $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
+            }
+        });
     }
 
 }());
