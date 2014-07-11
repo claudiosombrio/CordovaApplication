@@ -1,6 +1,6 @@
 // We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
-(function() {
-    document.addEventListener("deviceready", onDeviceReady, false);
+//(function() {
+document.addEventListener("deviceready", onDeviceReady, false);
     
 function onDeviceReady() {
     /* ---------------------------------- Local Variables ---------------------------------- */
@@ -32,5 +32,5 @@ function findByName() {
     });
 }
     
-}());
+//}());
 
