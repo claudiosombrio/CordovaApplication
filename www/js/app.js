@@ -35,6 +35,7 @@
         var service = new EmployeeService();
         service.initialize().done(function() {
             console.log("Service initialized");
+            alert("Service initialized");
             renderHomeView();
         });
         alert("dbInitializerFinal");
