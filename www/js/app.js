@@ -4,12 +4,14 @@
     document.addEventListener('deviceready', ready(),false);
 
     function ready(){
+        alert("ready");
         dialogsModifier();
-        dbInitializer();
         eventRegistration();
+        dbInitializer();
     }    
     
     function eventRegistration(){
+        alert("eventRegistration");
         $('.help-btn').on('click', function() {
             alert("Employee Directory v3.4");
         });
@@ -29,11 +31,13 @@
     }
     
     function dbInitializer(){
+        alert("dbInitializer");
         var service = new EmployeeService();
         service.initialize().done(function() {
             console.log("Service initialized");
             renderHomeView();
         });
+        alert("dbInitializerFinal");
     }
 
     function renderHomeView(){
