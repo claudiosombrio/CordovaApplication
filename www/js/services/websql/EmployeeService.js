@@ -25,12 +25,15 @@ var EmployeeService = function () {
         this.db.transaction(
             function (tx) {
 
-                var sql = "SELECT e.id, e.firstName, e.lastName, e.title, e.pic, count(r.id) reportCount " +
-                    "FROM employee e LEFT JOIN employee r ON r.managerId = e.id " +
-                    "WHERE e.firstName || ' ' || e.lastName LIKE ? " +
-                    "GROUP BY e.id ORDER BY e.lastName, e.firstName";
+//                var sql = "SELECT e.id, e.firstName, e.lastName, e.title, e.pic, count(r.id) reportCount " +
+//                    "FROM employee e LEFT JOIN employee r ON r.managerId = e.id " +
+//                    "WHERE e.firstName || ' ' || e.lastName LIKE ? " +
+//                    "GROUP BY e.id ORDER BY e.lastName, e.firstName";
 
-                tx.executeSql(sql, ['%' + searchKey + '%'], function (tx, results) {
+                var sql = "select sqlite_version() AS sqlite_version";
+
+//                tx.executeSql(sql, ['%' + searchKey + '%'], function (tx, results) {
+                tx.executeSql(sql, [], function (tx, results) {
                     var len = results.rows.length,
                         employees = [],
                         i = 0;
