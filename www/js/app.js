@@ -1,9 +1,4 @@
 // We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
-(function() {
-
-//    dbInitializer();
-    document.addEventListener('deviceready', ready(), false);
-
     function ready() {
         var service = new EmployeeService();
         service.initialize().done(function() {
@@ -11,10 +6,16 @@
         });
         alert("db inicio");
         alert("ready");
-        dialogsModifier();
-        eventRegistration();
+//        dialogsModifier();
+//        eventRegistration();
 //        dbInitializer();
     }
+    
+(function() {
+
+//    dbInitializer();
+//    document.addEventListener('deviceready', ready(), false);
+
 
     function eventRegistration() {
         alert("eventRegistration");
