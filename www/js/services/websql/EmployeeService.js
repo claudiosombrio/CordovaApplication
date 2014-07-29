@@ -3,7 +3,6 @@ var EmployeeService = function () {
     this.initialize = function () {
         var deferred = $.Deferred();
         this.db = window.sqlitePlugin.openDatabase("EmployeeDemoDB.db", "1.0", "Employee Demo DB", 200000);
-//        this.db = window.sqlitePlugin.openDatabase("EmployeeDemoDB.db", "1.0", "Employee Demo DB", -1);
 //        this.db = window.openDatabase("EmployeeDemoDB.db", "1.0", "Employee Demo DB", 200000);
         this.db.transaction(
             function (tx) {
