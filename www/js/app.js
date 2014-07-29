@@ -1,24 +1,29 @@
 // We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
 (function() {
 
-    dbInitializer();
-    document.addEventListener('deviceready', ready(),false);
+    var service = new EmployeeService();
+    service.initialize().done(function() {
+        console.log("Service initialized");
+    });
+        alert("db inicio");
+//    dbInitializer();
+//    document.addEventListener('deviceready', ready(), false);
 
-    function ready(){
+    function ready() {
         alert("ready");
         dialogsModifier();
         eventRegistration();
 //        dbInitializer();
-    }    
-    
-    function eventRegistration(){
+    }
+
+    function eventRegistration() {
         alert("eventRegistration");
         $('.help-btn').on('click', function() {
             alert("Employee Directory v3.4");
         });
     }
-    
-    function dialogsModifier(){
+
+    function dialogsModifier() {
         if (navigator.notification) { // Override default HTML alert with native dialog
             window.alert = function(message) {
                 navigator.notification.alert(
@@ -30,8 +35,8 @@
             };
         }
     }
-    
-    function dbInitializer(){
+
+    function dbInitializer() {
         alert("dbInitializer");
         var service = new EmployeeService();
         service.initialize().done(function() {
@@ -42,12 +47,12 @@
         alert("dbInitializerFinal");
     }
 
-    function renderHomeView(){
+    function renderHomeView() {
         var html = "<div class='header'><h1>Directory</h1></div>" +
-            "<div class='search-view'>" +
+                "<div class='search-view'>" +
                 "<input class='search-key' type='search' placeholder='Enter name'/>" +
                 "<ul class='list employee-list'></ul>" +
-            "</div>";
+                "</div>";
         $('body').html(html);
 
         $('.search-key').on('keyup', findByName);
