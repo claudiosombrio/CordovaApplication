@@ -9,7 +9,7 @@ function initDb() {
 document.addEventListener('deviceready', ready(), false);
 
 function ready() {
-    eventRegistration();
+//    eventRegistration();
     dialogsModifier();
 }
 
