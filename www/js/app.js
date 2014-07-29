@@ -1,13 +1,14 @@
 // We use an "Immediate Function" to initialize the application to avoid leaving anything behind in the global scope
 (function() {
 
+    dbInitializer();
     document.addEventListener('deviceready', ready(),false);
 
     function ready(){
         alert("ready");
         dialogsModifier();
         eventRegistration();
-        dbInitializer();
+//        dbInitializer();
     }    
     
     function eventRegistration(){
