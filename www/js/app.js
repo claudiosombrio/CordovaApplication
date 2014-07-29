@@ -1,5 +1,7 @@
+var service;
+
 function initDb() {
-    var service = new EmployeeService();
+    service = new EmployeeService();
     service.initialize().done(function() {
         console.log("Service initialized");
         renderHomeView();
@@ -35,12 +37,20 @@ function dialogsModifier() {
 function renderHomeView() {
     var html = "<div class='header'><h1>Directory</h1></div>" +
             "<div class='search-view'>" +
+            "<div class='versao'></div>" +
             "<input class='search-key' type='search' placeholder='Enter name'/>" +
             "<ul class='list employee-list'></ul>" +
             "</div>";
     $('body').html(html);
 
+    getVersion();
     $('.search-key').on('keyup', findByName);
+}
+
+function getVersion() {
+    service.getVersion().done(function(version) {
+        $('.versao').append('<h3>Versão: '+version+'</h3>');
+    });
 }
 
 function findByName() {
@@ -50,12 +60,12 @@ function findByName() {
         $('.employee-list').empty();
         for (var i = 0; i < l; i++) {
             e = employees[i];
-//                    $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
-            $('.employee-list').append('<li><a href="#employees/' + e.sqlite_version + '">' + e.sqlite_version + '</a></li>');
+            $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
+//            $('.employee-list').append('<li><a href="#employees/' + e.sqlite_version + '">' + e.sqlite_version + '</a></li>');
         }
     });
 }
 
-//(function() {
 
+//(function() {
 //}());

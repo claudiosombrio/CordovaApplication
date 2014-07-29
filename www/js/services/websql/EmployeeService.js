@@ -2,8 +2,8 @@ var EmployeeService = function () {
 
     this.initialize = function () {
         var deferred = $.Deferred();
-//        this.db = window.sqlitePlugin.openDatabase("EmployeeDemoDB.db", "1.0", "Employee Demo DB", 200000);
-        this.db = window.openDatabase("EmployeeDemoDB.db", "1.0", "Employee Demo DB", 200000);
+        this.db = window.sqlitePlugin.openDatabase("EmployeeDemoDB.db", "1.0", "Employee Demo DB", 200000);
+//        this.db = window.openDatabase("EmployeeDemoDB.db", "1.0", "Employee Demo DB", 200000);
         this.db.transaction(
             function (tx) {
                 createTable(tx);
@@ -21,20 +21,34 @@ var EmployeeService = function () {
         return deferred.promise();
     }
 
+    this.getVersion = function () {
+        var deferred = $.Deferred();
+        this.db.transaction(
+            function (tx){
+                var sql = "select sqlite_version() AS sqlite_version";
+                tx.executeSql(sql, [], function (tx, results) {
+                    var version = results.rows.item(0).sqlite_version;
+                    deferred.resolve(version);
+                });
+            },
+            function (error) {
+                deferred.reject("Transaction Error: " + error.message);
+            }
+        );
+        return deferred.promise();
+    };
+    
     this.findByName = function (searchKey) {
         var deferred = $.Deferred();
         this.db.transaction(
             function (tx) {
 
-//                var sql = "SELECT e.id, e.firstName, e.lastName, e.title, e.pic, count(r.id) reportCount " +
-//                    "FROM employee e LEFT JOIN employee r ON r.managerId = e.id " +
-//                    "WHERE e.firstName || ' ' || e.lastName LIKE ? " +
-//                    "GROUP BY e.id ORDER BY e.lastName, e.firstName";
+                var sql = "SELECT e.id, e.firstName, e.lastName, e.title, e.pic, count(r.id) reportCount " +
+                    "FROM employee e LEFT JOIN employee r ON r.managerId = e.id " +
+                    "WHERE e.firstName || ' ' || e.lastName LIKE ? " +
+                    "GROUP BY e.id ORDER BY e.lastName, e.firstName";
 
-                var sql = "select sqlite_version() AS sqlite_version";
-
-//                tx.executeSql(sql, ['%' + searchKey + '%'], function (tx, results) {
-                tx.executeSql(sql, [], function (tx, results) {
+                tx.executeSql(sql, ['%' + searchKey + '%'], function (tx, results) {
                     var len = results.rows.length,
                         employees = [],
                         i = 0;
@@ -49,7 +63,7 @@ var EmployeeService = function () {
             }
         );
         return deferred.promise();
-    }
+    };
 
     this.findById = function (id) {
         var deferred = $.Deferred();
