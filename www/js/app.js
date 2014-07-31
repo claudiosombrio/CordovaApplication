@@ -1,4 +1,6 @@
 var service;
+var homeTpl;
+var employeeListTpl;
 
 function initDb() {
     service = new EmployeeService();
@@ -11,6 +13,8 @@ function initDb() {
 document.addEventListener('deviceready', ready(), false);
 
 function ready() {
+    homeTpl = Handlebars.compile($("#home-tpl").html());
+    employeeListTpl = Handlebars.compile($("#employee-list-tpl").html());
 //    eventRegistration();
     dialogsModifier();
 }
@@ -35,14 +39,14 @@ function dialogsModifier() {
 }
 
 function renderHomeView() {
-    var html = "<div class='header'><h1>Directory</h1></div>" +
-            "<div class='search-view'>" +
-            "<div class='versao'></div>" +
-            "<input class='search-key' type='search' placeholder='Enter name'/>" +
-            "<ul class='list employee-list'></ul>" +
-            "</div>";
-    $('body').html(html);
-
+//    var html = "<div class='header'><h1>Directory</h1></div>" +
+//            "<div class='search-view'>" +
+//            "<div class='versao'></div>" +
+//            "<input class='search-key' type='search' placeholder='Enter name'/>" +
+//            "<ul class='list employee-list'></ul>" +
+//            "</div>";
+//    $('body').html(html);
+    $('body').html(homeTpl());
     getVersion();
     $('.search-key').on('keyup', findByName);
 }
@@ -55,14 +59,14 @@ function getVersion() {
 
 function findByName() {
     service.findByName($('.search-key').val()).done(function(employees) {
-        var l = employees.length;
-        var e;
-        $('.employee-list').empty();
-        for (var i = 0; i < l; i++) {
-            e = employees[i];
-            $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
-//            $('.employee-list').append('<li><a href="#employees/' + e.sqlite_version + '">' + e.sqlite_version + '</a></li>');
-        }
+        $('.content').html(employeeListTpl(employees));
+//        var l = employees.length;
+//        var e;
+//        $('.employee-list').empty();
+//        for (var i = 0; i < l; i++) {
+//            e = employees[i];
+//            $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
+//        }
     });
 }
 
