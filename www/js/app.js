@@ -5,13 +5,14 @@ function initDb() {
     service.initialize().done(function() {
         console.log("Service initialized");
 //        $('body').html(new HomeView(service).render().$el);
+        var slider = new PageSlider($('body'));
         router.addRoute('', function() {
-            $('body').html(new HomeView(service).render().$el);
+            slider.slidePage(new HomeView(service).render().$el);
         });
 
         router.addRoute('employees/:id', function(id) {
             service.findById(parseInt(id)).done(function(employee) {
-                $('body').html(new EmployeeView(employee).render().$el);
+                slider.slidePage(new EmployeeView(employee).render().$el);
             });
         });
 
