@@ -1,28 +1,31 @@
 var service;
-var homeTpl;
-var employeeListTpl;
 
 function initDb() {
     service = new EmployeeService();
     service.initialize().done(function() {
         console.log("Service initialized");
-        renderHomeView();
+//        $('body').html(new HomeView(service).render().$el);
+        router.addRoute('', function() {
+            $('body').html(new HomeView(service).render().$el);
+        });
+
+        router.addRoute('employees/:id', function(id) {
+            service.findById(parseInt(id)).done(function(employee) {
+                $('body').html(new EmployeeView(employee).render().$el);
+            });
+        });
+
+        router.start();
     });
 }
 
 document.addEventListener('deviceready', ready(), false);
 
 function ready() {
-    homeTpl = Handlebars.compile($("#home-tpl").html());
-    employeeListTpl = Handlebars.compile($("#employee-list-tpl").html());
-//    eventRegistration();
+    HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
+    EmployeeListView.prototype.template = Handlebars.compile($("#employee-list-tpl").html());
+    EmployeeView.prototype.template = Handlebars.compile($("#employee-tpl").html());
     dialogsModifier();
-}
-
-function eventRegistration() {
-    $('.help-btn').on('click', function() {
-        alert("Employee Directory v3.4");
-    });
 }
 
 function dialogsModifier() {
@@ -38,38 +41,11 @@ function dialogsModifier() {
     }
 }
 
-function renderHomeView() {
-//    var html = "<div class='header'><h1>Directory</h1></div>" +
-//            "<div class='search-view'>" +
-//            "<div class='versao'></div>" +
-//            "<input class='search-key' type='search' placeholder='Enter name'/>" +
-//            "<ul class='list employee-list'></ul>" +
-//            "</div>";
-//    $('body').html(html);
-    $('body').html(homeTpl());
-    getVersion();
-    $('.search-key').on('keyup', findByName);
-}
-
 function getVersion() {
     service.getVersion().done(function(version) {
-        $('.versao').append('<h3>Versão: '+version+'</h3>');
+        $('.versao').append('<h3>Versão: ' + version + '</h3>');
     });
 }
-
-function findByName() {
-    service.findByName($('.search-key').val()).done(function(employees) {
-        $('.content').html(employeeListTpl(employees));
-//        var l = employees.length;
-//        var e;
-//        $('.employee-list').empty();
-//        for (var i = 0; i < l; i++) {
-//            e = employees[i];
-//            $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
-//        }
-    });
-}
-
 
 //(function() {
 //}());
