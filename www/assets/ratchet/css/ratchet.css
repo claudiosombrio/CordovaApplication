@@ -231,7 +231,7 @@ th {
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -496,7 +496,7 @@ input[type="button"] {
   border-bottom: 1px solid #ddd;
 
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .bar-header-secondary {

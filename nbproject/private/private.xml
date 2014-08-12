@@ -5,10 +5,14 @@
         <group>
             <file>file:/home/claudio/projetos/phonegap/CordovaApplication/www1/config.xml</file>
             <file>file:/home/claudio/projetos/phonegap/CordovaApplication/www/js/app.js</file>
+            <file>file:/home/claudio/projetos/phonegap/CordovaApplication/www/js/HomeView.js</file>
             <file>file:/home/claudio/projetos/phonegap/CordovaApplication/www/index.html</file>
             <file>file:/home/claudio/projetos/phonegap/CordovaApplication/www/config.xml</file>
+            <file>file:/home/claudio/projetos/phonegap/CordovaApplication/www/js/EmployeeListView.js</file>
+            <file>file:/home/claudio/projetos/phonegap/CordovaApplication/www/js/EmployeeView.js</file>
             <file>file:/home/claudio/projetos/phonegap/CordovaApplication/config.xml</file>
             <file>file:/home/claudio/projetos/phonegap/CordovaApplication/nbproject/private/private.xml</file>
+            <file>file:/home/claudio/projetos/phonegap/CordovaApplication/www/lib/handlebars.js</file>
             <file>file:/home/claudio/projetos/phonegap/CordovaApplication/www/js/services/websql/EmployeeService.js</file>
         </group>
     </open-files>

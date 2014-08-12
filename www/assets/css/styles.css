@@ -1,4 +1,12 @@
-ul {
+.barra {
+    position: inherit;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/*ul {
     clear: both;
 }
 
@@ -60,4 +68,4 @@ ul {
 .icon-location {
     background: transparent url(images/ic_action_location.png);
     background-repeat: no-repeat;
-}
+}*/
