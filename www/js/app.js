@@ -18,6 +18,17 @@ function initDb() {
 
         router.start();
     });
+    
+    alert('iniciando facebook');
+    try {
+        FB.init({
+            appId: "204305149755784",
+            nativeInterface: CDV.FB,
+            useCachedDialogs: false
+        });
+    } catch (e) {
+        alert(e);
+    }      
 }
 
 if (typeof CDV === 'undefined') {
@@ -33,16 +44,7 @@ function ready() {
 //    EmployeeListView.prototype.template = Handlebars.compile($("#employee-list-tpl").html());
 //    EmployeeView.prototype.template = Handlebars.compile($("#employee-tpl").html());
 //    dialogsModifier();
-    alert('iniciando facebook');
-    try {
-        FB.init({
-            appId: "204305149755784",
-            nativeInterface: CDV.FB,
-            useCachedDialogs: false
-        });
-    } catch (e) {
-        alert(e);
-    }    
+  
 }
 
 function dialogsModifier() {
