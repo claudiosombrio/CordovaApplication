@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <widget xmlns   = "http://www.w3.org/ns/widgets"
-        xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "br.com.celk.CordovaApplication"
-        versionCode = "10" 
-        version     = "2.0" >
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+            xmlns:gap   = "http://phonegap.com/ns/1.0"
+            id          = "br.com.celk.CordovaApplication"
+            versionCode = "10" 
+            version     = "2.0" >
 
     <name>CordovaApplication3</name>
 
@@ -15,7 +15,10 @@
         Claudio
     </author>
     <access origin="*"/>
-
+    <feature name="org.apache.cordova.facebook.Connect">
+        <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
+    </feature>
+    
     <gap:plugin name="org.apache.cordova.contacts" version="0.2.9" />
     <gap:plugin name="org.apache.cordova.camera" version="0.2.9" />
     <gap:plugin name="com.millerjames01.sqlite-plugin" version="1.0.1" />
