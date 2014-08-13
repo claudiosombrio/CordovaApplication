@@ -29,10 +29,10 @@ if (typeof FB === 'undefined') {
 document.addEventListener('deviceready', ready(), false);
 
 function ready() {
-    HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
-    EmployeeListView.prototype.template = Handlebars.compile($("#employee-list-tpl").html());
-    EmployeeView.prototype.template = Handlebars.compile($("#employee-tpl").html());
-    dialogsModifier();
+//    HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
+//    EmployeeListView.prototype.template = Handlebars.compile($("#employee-list-tpl").html());
+//    EmployeeView.prototype.template = Handlebars.compile($("#employee-tpl").html());
+//    dialogsModifier();
     alert('iniciando facebook');
     try {
         FB.init({
