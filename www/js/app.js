@@ -20,6 +20,12 @@ function initDb() {
     });
 }
 
+if (typeof CDV === 'undefined') {
+    alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
+}
+if (typeof FB === 'undefined') {
+    alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
+}
 document.addEventListener('deviceready', ready(), false);
 
 function ready() {
@@ -27,6 +33,16 @@ function ready() {
     EmployeeListView.prototype.template = Handlebars.compile($("#employee-list-tpl").html());
     EmployeeView.prototype.template = Handlebars.compile($("#employee-tpl").html());
     dialogsModifier();
+    alert('iniciando facebook');
+    try {
+        FB.init({
+            appId: "204305149755784",
+            nativeInterface: CDV.FB,
+            useCachedDialogs: false
+        });
+    } catch (e) {
+        alert(e);
+    }    
 }
 
 function dialogsModifier() {
