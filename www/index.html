@@ -59,11 +59,14 @@
             var friendIDs = [];
             var fdata;
             function me() {
+                alert('entrou me');
             FB.api('/me/friends', { fields: 'id, name, picture' },  function(response) {
             if (response.error) {
             alert(JSON.stringify(response.error));
             } else {
+                alert('me sem erro');
             var data = document.getElementById('data');
+            alert(data);
             fdata=response.data;
             console.log("fdata: "+fdata);
             response.data.forEach(function(item) {
@@ -82,6 +85,7 @@
             //friendsInfo[k] = friend;
             }
             console.log("friendId's: "+friendIDs);
+            alert('friendIds: '+friendIDs);
             });
             }
 
