@@ -19,27 +19,39 @@ function initDb() {
         router.start();
     });
     
-    alert('iniciando facebook');
-    try {
-        FB.init({
-            appId: "204305149755784",
-            nativeInterface: CDV.FB,
-            useCachedDialogs: false
-        });
-    } catch (e) {
-        alert(e);
-    }      
+//    alert('iniciando facebook');
+//    try {
+//        FB.init({
+//            appId: "204305149755784",
+//            nativeInterface: CDV.FB,
+//            useCachedDialogs: false
+//        });
+//    } catch (e) {
+//        alert(e);
+//    }      
 }
 
-if (typeof CDV === 'undefined') {
-    alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
-}
-if (typeof FB === 'undefined') {
-    alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
-}
+//if (typeof CDV === 'undefined') {
+//    alert('CDV variable does not exist. Check that you have included cdv-plugin-fb-connect.js correctly');
+//}
+//if (typeof FB === 'undefined') {
+//    alert('FB variable does not exist. Check that you have included the Facebook JS SDK file.');
+//}
 document.addEventListener('deviceready', ready(), false);
 
 function ready() {
+    
+            var xmlhttp = new XMLHttpRequest();
+            var url = 'http://garca:8080/rest/mobile/3.0/meuid/registrarDispositivo?usuario=admin&senha=1234561';
+
+            xmlhttp.onreadystatechange = function() {
+//                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    alert(xmlhttp.readyState+ " ("+xmlhttp.status+") " + xmlhttp.responseText);
+//                }
+            };
+            xmlhttp.open("POST", url, true);
+            xmlhttp.send();    
+    
 //    HomeView.prototype.template = Handlebars.compile($("#home-tpl").html());
 //    EmployeeListView.prototype.template = Handlebars.compile($("#employee-list-tpl").html());
 //    EmployeeView.prototype.template = Handlebars.compile($("#employee-tpl").html());
